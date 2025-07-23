@@ -13,8 +13,8 @@ export const Home = () => {
 	const handleSignup = async (e) =>{
 	    e.preventDefault();
 	try {
-		const response = await fetch(`{API_URL}/api/signup`,{
-			method : "POST"
+		const response = await fetch(`${API_URL}api/signup`,{
+			method : "POST",
 			headers : {
 				"Content-type" : "application/json"
 			},
@@ -32,10 +32,6 @@ export const Home = () => {
 
 	}
    }
-
-	useEffect(() => {
-		loadMessage()
-	}, [])
 
 	return (
 		<div className="text-center mt-5">

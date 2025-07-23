@@ -3,6 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, send_from_directory
+from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
@@ -31,11 +32,13 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 MIGRATE = Migrate(app, db, compare_type=True)
 
 app.config['JWT-TOKEN_EXPIRES'] = timedelta(hours=1)
 
-JWT= JWT
+jwt= JWTManager(app)
+bcrypt=Bcrypt(app)
 
 # add the admin
 setup_admin(app)
